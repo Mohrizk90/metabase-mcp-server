@@ -31,6 +31,11 @@ app.get("/health", (req, res) => {
   return res.json({ ok: true, service: "metabase-mcp-server" });
 });
 
+// MCP ping endpoint for health checks from clients
+app.get("/mcp/_ping", (req, res) => {
+  return res.status(200).json({ status: "ok" });
+});
+
 /**
  * Helper: call Metabase API with API key header
  */
@@ -203,5 +208,3 @@ app.post("/get_question_results", async (req, res) => {
 app.listen(port, () => {
   console.log(`metabase-mcp-server listening on port ${port}`);
 });
-
-
